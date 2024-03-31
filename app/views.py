@@ -26,9 +26,32 @@ def contact(request):
 
 def profile(request,username):
     print(username)
+    users = [
+        {
+            'username':'ram',
+            'full_name':"Ram Kumar Thapa",
+            'designation':"Web Developer",
+        }
+        ,
+        {
+            'username':'hari',
+            'full_name':"Hari Kumar Thapa",
+            'designation':"App Developer",
+        },
+        {
+            'username':'shyam',
+            'full_name':"Shyam  Thapa",
+            'designation':"Python Developer",
+        }
+    ]
+    found_user = None
+    for user in users:
+        print(user['username'])
+        if user['username'] == username:
+            found_user = user
     context = {
-        'username':username + " user"
-    
-
+        'username':username + " user",
+        'users':users,
+        'found_user':found_user
     }
     return render(request,'profile.html',context)

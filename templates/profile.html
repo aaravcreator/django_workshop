@@ -7,7 +7,23 @@
 </head>
 <body>
     <h1>Profile Page</h1>
-    <h2>This is profile page of {{username}}</h2>
-    
+    <!-- <h2>This is profile page of {{username}}</h2> -->
+    {% if found_user %}
+    <h1>Username : {{found_user.username}}</h1>
+        <h2>Full Name : {{found_user.full_name}}</h2>
+        <h3>Post : {{found_user.designation}}</h3>
+        <hr>
+
+    {% else %}
+    <h1>User Not Found</h1>
+
+    {% endif %}
+    <h1>List of Users </h1>
+    {% for user in users %}
+        <h1>Username : {{user.username}}</h1>
+        <h2>Full Name : {{user.full_name}}</h2>
+        <h3>Post : {{user.designation}}</h3>
+        <hr>
+    {% endfor %}
 </body>
 </html>
