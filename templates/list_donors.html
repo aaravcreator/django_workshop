@@ -7,6 +7,13 @@
 </head>
 <body>
     <h1>Donors List</h1>
-    
+    <h2>TOTAL DONORS : {{total_donors}}</h2>
+    <h2>Male DONORS : {{male_donors}}</h2>
+    <h2>Female DONORS : {{female_donors}}</h2>
+   {% for donor in donor_list %}
+    <h2>{{donor.name}}</h2>
+    <h3>{{donor.blood_group}}</h3>
+    <hr>
+   {% endfor %}
 </body>
 </html>

@@ -3,25 +3,32 @@ from random import randint
 # Create your views here.
 from .models import  Person,Gender
 def list_donors(request):
-    donor_person = Person.objects.all()
-    adult_donors = Person.objects.filter(age=18)
-    
-    male = Gender.objects.get(id=1)
-    male_count = Person.objects.filter(gender=male).count()
-
-    print("Adult: ",adult_donors)
+    donor_person = Person.objects.filter(approved=True)
     total_donors = donor_person.count()
-    print("TOTAL PERSON : ",total_donors )
-    for person in donor_person:
-        print(person.name)
-        print(person.blood_group)
-        print(person.age)
-        print("______")
+    male_donors = Person.objects.filter(gender__title="MALE").count()
+    female_donors = Person.objects.filter(gender__title="FEMALE").count()
 
+
+    
+    # adult_donors = Person.objects.filter(age=18)
+    # total_donors = donor_person.count()    
+    # male = Gender.objects.get(id=1)
+    # male_count = Person.objects.filter(gender=male).count()
+    # print("Adult: ",adult_donors)
+    # total_donors = donor_person.count()
+    # print("TOTAL PERSON : ",total_donors )
+    # for person in donor_person:
+    #     print(person.name)
+    #     print(person.blood_group)
+    #     print(person.age)
+    #     print("______")
     context = {
-
+        'donor_list':donor_person,
+        'total_donors':total_donors,
+        'male_donors':male_donors,
+        'female_donors':female_donors,
     }
-    return render(request,'list_donors.html',context)
+    return render(request,'donors.html',context)
 
 def home(request):
     random_data = randint(1,99)
